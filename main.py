@@ -43,7 +43,7 @@ def sendText(accessToken):
     data['msgtype'] = msgType
     data['agentid'] = agentId
     data['text'] = {}
-    data['text']['content'] = "【摸鱼办公室】 "+time.strftime( "%Y-%m-%d %H:%M:%S",time.localtime(int(time.time())))+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦\n【提醒】\n多喝水 注意身体！"
+    data['text']['content'] = "【摸鱼办公室】 "+time.strftime( "%Y-%m-%d %H:%M:%S",time.localtime(int(time.time())))+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦\n【提醒】多喝水 注意身体！"
     data['safe'] = 0
     data['enable_id_trans'] = 0
     data['enable_duplicate_check'] = 0
