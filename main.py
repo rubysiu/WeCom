@@ -1,7 +1,6 @@
-import datetime
 import requests
 import json
-import pytz
+from datetime import datetime, timezone, timedelta
 baseUrl = "https://qyapi.weixin.qq.com/cgi-bin"
 sendTextUri = "/message/send"
 corpId = "ww4d015215e8671ab3"
@@ -37,14 +36,13 @@ def getAccessToken():
     fileContent = GET(url)
     sendText(fileContent['access_token'])
 def sendText(accessToken):
-    d = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    d.replace(tzinfo=pytz.timezone('Asia/Shanghai'))
+
     data = {}
     data["touser"] = "@all"
     data['msgtype'] = msgType
     data['agentid'] = agentId
     data['text'] = {}
-    data['text']['content'] = "【摸鱼办公室】 "+d+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦\n【提醒】多喝水 注意身体！"
+    data['text']['content'] = "【摸鱼办公室】 "+datetime.now().astimezone(timezone(timedelta(hours=+8))).strftime('%Y-%m-%d %H:%M:%S')+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦\n【提醒】多喝水 注意身体！"
     data['safe'] = 0
     data['enable_id_trans'] = 0
     data['enable_duplicate_check'] = 0
