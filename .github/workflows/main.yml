@@ -35,7 +35,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: run main
         run:  |
-          sudo cp -p ./chromedriver /usr/bin
-          chmod -R 777 /usr/bin/chromedrive
           python main.py
         
