@@ -30,13 +30,11 @@ def POST(url,data,cookie):
     
     #如果req返回的json数据，则可以用json的一个函数转换
     data = json.loads(req.text)
-    print(req.text)
     return req.text
 
 def getAccessToken():
     url = baseUrl+"/gettoken?corpid="+corpId+"&corpsecret="+corpSecret
     fileContent = GET(url)
-    print(fileContent['access_token'])
     sendText(fileContent['access_token'])
 def sendText(accessToken):
 
@@ -45,13 +43,13 @@ def sendText(accessToken):
     data['msgtype'] = msgType
     data['agentid'] = agentId
     data['text'] = {}
-    data['text']['content'] = "【摸鱼办公室】 "+time.strftime( "%Y-%m-%d %H:%M:%S",time.localtime(int(time.time())))+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦【提醒】多喝水 注意身体！"
+    data['text']['content'] = "【摸鱼办公室】 "+time.strftime( "%Y-%m-%d %H:%M:%S",time.localtime(int(time.time())))+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦\n【提醒】\n多喝水 注意身体！"
     data['safe'] = 0
     data['enable_id_trans'] = 0
     data['enable_duplicate_check'] = 0
     data['duplicate_check_interval'] = 1800
     url = baseUrl+sendTextUri+"?access_token="+accessToken+"&debug=1"
     res = POST(url,data,"")
-    print(res)
 if __name__ == '__main__':
     getAccessToken()
+    print("运行成功")
