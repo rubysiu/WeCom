@@ -11,8 +11,6 @@ msgType = "text"
 def GET(url):
     #get请求
     req = requests.get(url)
-    #输出状态码
-    print(req.status_code)
     #输出返回内容
     return req.json()
 
@@ -36,13 +34,13 @@ def getAccessToken():
     fileContent = GET(url)
     sendText(fileContent['access_token'])
 def sendText(accessToken):
-
+    v1 = GET("https://v1.hitokoto.cn/?c=f")
     data = {}
     data["touser"] = "@all"
     data['msgtype'] = msgType
     data['agentid'] = agentId
     data['text'] = {}
-    data['text']['content'] = "【摸鱼办公室】 "+datetime.now().astimezone(timezone(timedelta(hours=+8))).strftime('%Y-%m-%d %H:%M:%S')+"早上好，摸鱼人，工作再累，一定不要忘记摸鱼哦\n【提醒】多喝水 注意身体！"
+    data['text']['content'] = "【摸鱼办公室】 \n"+datetime.now().astimezone(timezone(timedelta(hours=+8))).strftime('%m月%d日')+"早上好，工作再累，一定不要忘记摸鱼哦\n【每日一言】\n"+v1['hitokoto']+"\n【提醒】\n多喝水 注意身体！"
     data['safe'] = 0
     data['enable_id_trans'] = 0
     data['enable_duplicate_check'] = 0
